@@ -3,6 +3,7 @@ from src.common.database import Database
 from src.models.post import Post
 import datetime
 
+
 class Blog(object):
     # rewriting id with _id, overwrite the mongodb _id with our id
     def __init__(self, author, title, description, author_id, _id=None):
@@ -19,8 +20,7 @@ class Blog(object):
                     title = title,
                     content = content,
                     author = self.author,
-                    created_date = date
-                    )
+                    created_date = date)
         post.save_to_mongo()
 
     def get_posts(self):

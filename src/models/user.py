@@ -1,8 +1,6 @@
 import uuid
-
 import datetime
 from flask import session
-
 from src.common.database import Database
 from src.models.blog import Blog
 
@@ -116,4 +114,4 @@ class User(object):
 
 
     def save_to_mongo(self):
-        Database.insert(collection='blogs', data=self.json())
+        Database.insert(collection='users', data=self.json())

@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, session
-
 from src.common.database import Database
 from src.models.user import User
 
@@ -8,7 +7,7 @@ from src.models.user import User
 # create a class of Flask
 app = Flask(__name__)
 # create a secret_key for session to be able to work
-app.secret_key = "adfaDSADFa233r423sdfa"
+app.secret_key = "Mike is great"
 
 
 # define the first end-point
@@ -35,9 +34,11 @@ def login_user():
     if User.login_valid(email, password):
         # if matched save the email in session
         User.login(email)
+    else:
+        session['email'] = None
 
     # redirect the user on a profile.html page, with email on the session saved
-    return render_template('profile.html', email=session['email'])
+    return render_template('profile.html', email=session['email'], password=password)
 
 
 # in order to work this app

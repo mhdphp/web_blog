@@ -2,9 +2,9 @@
 
 
 {% block content %}
-    <form action="/login" id="login-form" method="post">
-        <input type="text" id="email" name="email">
+    <form action="/login" id="login-form" method="POST">
+        <input type="text" id="name" name="email">
         <input type="password" id="password" name="password">
-        <input type="submit" id="submit-button">
+        <input type="submit" id="submit-button" name="submit">
     </form>
 {% endblock %}
