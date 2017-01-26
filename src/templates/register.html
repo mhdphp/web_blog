@@ -2,9 +2,28 @@
 
 
 {% block content %}
-    <form action="/auth/register" id="register-form" method="POST">
-        <input type="text" id="name" name="email">
-        <input type="password" id="password" name="password">
-        <input type="submit" id="submit-button" name="submit">
-    </form>
+    <div class="container page-form">
+    <div class="row form-row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="/auth/register" id="login-form" method="POST">
+
+                <div class="form-group">
+                    <h3 class="text-center">Register</h3>
+                </div>
+
+                <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+
+                <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                </div>
+
+                <button type="submit" id="submit-button" name="submit" class="btn btn-success">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
