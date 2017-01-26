@@ -10,11 +10,25 @@ app = Flask(__name__)
 app.secret_key = "Mike is great"
 
 
-# define the first end-point
+# define the first end-point -- www/mysite.con/api/
 @app.route('/')
-def hello_world():
+def home_template():
+    return render_template('home.html')
+
+
+# define the second end-point -- www/mysite.com/api/login
+@app.route('/login')
+def login_template():
     # return 'Hello, world'
     return render_template('login.html')
+
+
+# define another end-point -- www/mysite.com/api/register
+@app.route('/register')
+def registe_template():
+    # return 'Hello, world'
+    return render_template('register.html')
+
 
 
 # we have to initialize the database
@@ -25,7 +39,8 @@ def initialize_database():
 
 
 # define another end-point
-@app.route('/login', methods=['POST'])
+# login user
+@app.route('/auth/login', methods=['POST'])
 def login_user():
     email = request.form['email']
     password = request.form['password']
@@ -39,6 +54,17 @@ def login_user():
 
     # redirect the user on a profile.html page, with email on the session saved
     return render_template('profile.html', email=session['email'], password=password)
+
+
+# register user
+@app.route('/auth/register', methods=['POST'])
+def register_user():
+    email = request.form['email']
+    password = request.form['password']
+
+    User.register(email, password)
+
+    return render_template('profile.html', email=session['email'])
 
 
 # in order to work this app
