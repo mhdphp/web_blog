@@ -55,4 +55,4 @@ class Post(object):
     # return all posts belonging to the blog with blog_id
     # return a list of them - list comprehension
     def from_blog(_id):
-        return [post for post in Database.find(collection='posts', query={'blog_id':id})]
+        return [post for post in Database.find(collection='posts', query={'blog_id':_id})]

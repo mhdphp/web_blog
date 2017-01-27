@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, session
 from src.common.database import Database
+from src.models.blog import Blog
 from src.models.user import User
+from src.models.post import Post
 
 
 # tell python we are creating a flask application
@@ -85,10 +87,11 @@ def user_blogs(user_id=None):
     return render_template('user_blogs.html', blogs=blogs, email=user.email)
 
 
+# list all the posts that are in a blog
 @app.route('/posts/<string:blog_id>')
 def blog_posts(blog_id):
     blog = Blog.from_mongo(blog_id)
-    posts = Blog.get_posts()
+    posts = blog.get_posts()
 
     return render_template('posts.html', blog_title=blog.title, posts=posts)
 
