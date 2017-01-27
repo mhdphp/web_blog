@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container page-form">
+    <div class="row form-row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="/posts/new/{{ blog_id }}" id="new-post" method="POST">
+
+                <div class="form-group">
+                    <h3 class="text-center">Create New Post</h3>
+                </div>
+
+                <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Post Title " name="title">
+                </div>
+
+                <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" id="author" placeholder="Author " name="author">
+                </div>
+
+                <div class="form-group">
+                <label for="content">Post Content</label>
+                <input type="text" class="form-control" id="content" placeholder="Content" name="content">
+                </div>
+
+                <button type="submit" id="submit-button" name="submit" class="btn btn-success">Create post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
