@@ -67,6 +67,32 @@ def register_user():
     return render_template('profile.html', email=session['email'])
 
 
+# list the blogs belonging to an user or author
+@app.route('/blogs/<string:user_id>')
+@app.route('/blogs')
+def user_blogs(user_id=None):
+
+    # find the user either by user_id given or by email
+    # stored in session
+    if user_id is not None:
+        user = User.get_by_id(user_id)
+    else:
+        user = User.get_by_email(session['email'])
+
+    # get all the blogs associated with this user
+    blogs = user.get_blogs()
+
+    return render_template('user_blogs.html', blogs=blogs, email=user.email)
+
+
+@app.route('/posts/<string:blog_id>')
+def blog_posts(blog_id):
+    blog = Blog.from_mongo(blog_id)
+    posts = Blog.get_posts()
+
+    return render_template('posts.html', blog_title=blog.title, posts=posts)
+
+
 # in order to work this app
 if __name__ == '__main__':
     app.run(port=4995)
